@@ -22,7 +22,7 @@ public class Window {
             throw new IllegalStateException("Failed to initialize GLFW");
         }
 
-        window = GLFW.glfwCreateWindow(800, 600, "OpenGL Test", 0, 0);
+        window = GLFW.glfwCreateWindow(800, 600, "RayCaster", 0, 0);
         if (window == 0) {
             throw new RuntimeException("Failed to create the GLFW window");
         }
@@ -40,10 +40,10 @@ public class Window {
             GL11.glBegin(GL11.GL_POINTS);
             GL11.glColor3f(0,1, 0);
 
-            drawRay(100, 100, 120, 400);
-            drawRay(100, 100, 500, 220);
-            drawRay(120, 400, 495, 300);
-            drawRay(495, 300, 500, 100); // TODO fix negative direction of ray
+            drawRay(new Ray(100, 100, 120, 400));
+            drawRay(new Ray(100, 100, 500, 220));
+            drawRay(new Ray(120, 400, 495, 300));
+            drawRay(new Ray(495, 300, 500,  220));
 
 
             GL11.glEnd();
@@ -61,30 +61,27 @@ public class Window {
         GL11.glVertex2f(ndcX, ndcY);
     }
 
-    // draws a ray from start to end coordinates
-    private void drawRay(int startX, int startY, int endX, int endY, Color color){
-        val xLength = endX - startX;
-        val yLength = endY - startY;
-        float xMulti = 1;
-        float yMulti = 1;
+
+    private void drawRay(Ray ray){
+        val xLength = ray.getEndX() - ray.getStartX();
+        val yLength = ray.getEndY() - ray.getStartY();
+        float xMulti = xLength > 0 ? 1 : -1;
+        float yMulti = yLength > 0 ? 1 : -1;
         int usedLength;
 
         if(Math.abs(xLength) > Math.abs(yLength)){
-            yMulti = (float)(endY - startY) / (float) (endX - startX);
-            usedLength = xLength;
+            yMulti = (float)(yLength) / (float) Math.abs(xLength);
+            usedLength = Math.abs(xLength);
         }else{
-            xMulti = (float)(endX - startX) / (float) (endY - startY);
-            usedLength = yLength;
+            xMulti = (float)(xLength) / (float) Math.abs(yLength);
+            usedLength = Math.abs(yLength);
         }
 
         for(float i = 0; i <= usedLength; i ++){
-            drawPixel((int)(startX + i * xMulti), (int)(startY + i * yMulti), color);
+            drawPixel((int)(ray.getStartX() + i * xMulti), (int)(ray.getStartY() + i * yMulti), ray.getColor());
         }
     }
 
-    private void drawRay(int startX, int startY, int endX, int endY) {
-        drawRay(startX, startY, endX, endY, null);
-    }
 
 
 
