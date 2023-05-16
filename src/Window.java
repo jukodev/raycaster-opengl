@@ -9,6 +9,7 @@ import static org.lwjgl.opengl.GL11.*;
 
 public class Window {
     private long window;
+    private Player player;
 
     public void run() {
         init();
@@ -22,7 +23,7 @@ public class Window {
             throw new IllegalStateException("Failed to initialize GLFW");
         }
 
-        window = GLFW.glfwCreateWindow(800, 600, "RayCaster", 0, 0);
+        window = GLFW.glfwCreateWindow(1024, 512, "RayCaster", 0, 0);
         if (window == 0) {
             throw new RuntimeException("Failed to create the GLFW window");
         }
@@ -31,22 +32,18 @@ public class Window {
         GL.createCapabilities();
 
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f); //background color
-    }
 
+        player = new Player(window);
+    }
 
     private void loop() {
         while (!GLFW.glfwWindowShouldClose(window)) {
             GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
-            GL11.glBegin(GL11.GL_POINTS);
-            GL11.glColor3f(0,1, 0);
+            //GL11.glBegin(GL11.GL_POINTS);
 
-            drawRay(new Ray(100, 100, 120, 400));
-            drawRay(new Ray(100, 100, 500, 220));
-            drawRay(new Ray(120, 400, 495, 300));
-            drawRay(new Ray(495, 300, 500,  220));
+            player.draw();
 
-
-            GL11.glEnd();
+            //GL11.glEnd();
             GLFW.glfwSwapBuffers(window);
             GLFW.glfwPollEvents();
         }
