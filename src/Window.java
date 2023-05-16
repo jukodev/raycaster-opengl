@@ -11,6 +11,18 @@ public class Window {
     private long window;
     private Player player;
 
+    private int mapX = 8, mapY = 8, mapS = 64;
+    private int map[] = {
+            1,1,1,1,1,1,1,1,
+            1,0,0,0,0,0,0,1,
+            1,0,1,1,1,0,0,1,
+            1,0,0,1,0,0,0,1,
+            1,0,0,0,0,0,0,1,
+            1,0,1,0,0,1,0,1,
+            1,0,0,0,0,1,0,1,
+            1,1,1,1,1,1,1,1,
+    };
+
     public void run() {
         init();
         loop();
@@ -31,7 +43,7 @@ public class Window {
         GLFW.glfwMakeContextCurrent(window);
         GL.createCapabilities();
 
-        glClearColor(0.0f, 0.0f, 0.0f, 1.0f); //background color
+        glClearColor(0.1f, 0.1f, 0.1f, 1.0f); //background color
 
         player = new Player(window);
     }
@@ -39,13 +51,32 @@ public class Window {
     private void loop() {
         while (!GLFW.glfwWindowShouldClose(window)) {
             GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
-            //GL11.glBegin(GL11.GL_POINTS);
-
+            drawMap();
             player.draw();
 
-            //GL11.glEnd();
             GLFW.glfwSwapBuffers(window);
             GLFW.glfwPollEvents();
+        }
+    }
+
+    private void drawMap(){
+        int xo, yo;
+        for(int y = 0; y < mapY; y++){
+            for(int x = 0; x < mapX; x++){
+                if(map[y*mapX+x]==1){
+                    glColor3f(1,1,1);
+                }else{
+                    glColor3f(0,0,0);
+                }
+                xo = x*mapS;
+                yo = y*mapS;
+                glBegin(GL_QUADS);
+                glVertex2i(xo, yo);
+                glVertex2i(xo, yo + mapS);
+                glVertex2i(xo + mapS, yo + mapS);
+                glVertex2i(xo +  mapS, yo );
+                glEnd();
+            }
         }
     }
 
