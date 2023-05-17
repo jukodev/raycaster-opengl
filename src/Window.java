@@ -63,18 +63,15 @@ public class Window {
         int xo, yo;
         for(int y = 0; y < mapY; y++){
             for(int x = 0; x < mapX; x++){
-                if(map[y*mapX+x]==1){
-                    glColor3f(1,1,1);
-                }else{
-                    glColor3f(0,0,0);
-                }
+                int color = map[y*mapX+x] == 1 ? 1 : 0;
+                glColor3f(color, color, color);
                 xo = x*mapS;
                 yo = y*mapS;
                 glBegin(GL_QUADS);
-                glVertex2i(xo, yo);
-                glVertex2i(xo, yo + mapS);
-                glVertex2i(xo + mapS, yo + mapS);
-                glVertex2i(xo +  mapS, yo );
+                glVertex2f(getNormalX( 0 + xo + 1), getNormalY(0 + yo + 1));
+                glVertex2f( getNormalX(0 + xo + 1), getNormalY(mapS + yo - 1));
+                glVertex2f( getNormalX(mapS + xo - 1), getNormalY(mapS + yo - 1));
+                glVertex2f( getNormalX(mapS  +xo - 1), getNormalY(0 + yo + 1));
                 glEnd();
             }
         }
@@ -82,11 +79,19 @@ public class Window {
 
     // draws pixel at given coordinates
     private void drawPixel(int x, int y, Color color){
-        val ndcX = (2.0f * x / 800.0f) - 1.0f;
-        val ndcY = 1.0f - (2.0f * y / 600.0f);
+        val ndcX = getNormalX(x);
+        val ndcY = getNormalY(y);
         if(color != null)
             GL11.glColor3f(color.getRed(), color.getGreen(), color.getBlue());
         GL11.glVertex2f(ndcX, ndcY);
+    }
+
+    private float getNormalX(int i){
+        return ((2.0f * i / 800.0f) - 1.0f);
+    }
+
+    private float getNormalY(int i){
+        return (1.0f - (2.0f * i / 600.0f));
     }
 
 
