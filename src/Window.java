@@ -68,10 +68,10 @@ public class Window {
                 xo = x*mapS;
                 yo = y*mapS;
                 glBegin(GL_QUADS);
-                glVertex2f(getNormalX( 0 + xo + 1), getNormalY(0 + yo + 1));
-                glVertex2f( getNormalX(0 + xo + 1), getNormalY(mapS + yo - 1));
-                glVertex2f( getNormalX(mapS + xo - 1), getNormalY(mapS + yo - 1));
-                glVertex2f( getNormalX(mapS  +xo - 1), getNormalY(0 + yo + 1));
+                glVertex2f(getNormalX(xo + 1), getNormalY(yo + 1));
+                glVertex2f(getNormalX(xo + 1), getNormalY(mapS + yo - 1));
+                glVertex2f(getNormalX(mapS + xo - 1), getNormalY(mapS + yo - 1));
+                glVertex2f(getNormalX(mapS  +xo - 1), getNormalY(yo + 1));
                 glEnd();
             }
         }
@@ -84,14 +84,6 @@ public class Window {
         if(color != null)
             GL11.glColor3f(color.getRed(), color.getGreen(), color.getBlue());
         GL11.glVertex2f(ndcX, ndcY);
-    }
-
-    private float getNormalX(int i){
-        return ((2.0f * i / 800.0f) - 1.0f);
-    }
-
-    private float getNormalY(int i){
-        return (1.0f - (2.0f * i / 600.0f));
     }
 
 
@@ -115,7 +107,13 @@ public class Window {
         }
     }
 
+    private static float getNormalX(int i){
+        return ((2.0f * i / 1024) - 1.0f);
+    }
 
+    private static float getNormalY(int i){
+        return (1.0f - (2.0f * i / 512));
+    }
 
 
     public static void main(String[] args) {

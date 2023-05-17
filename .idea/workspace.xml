@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4c7c0bc6-3d9a-428a-a743-c759845d5fb2" name="Changes" comment="started base 2d map drawing">
+    <list default="true" id="4c7c0bc6-3d9a-428a-a743-c759845d5fb2" name="Changes" comment="fixed mapping by normalizing vecs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Window.java" afterDir="false" />
     </list>
@@ -79,7 +79,7 @@
       <workItem from="1684193104232" duration="77000" />
       <workItem from="1684193190892" duration="5404000" />
       <workItem from="1684271687752" duration="7082000" />
-      <workItem from="1684363128398" duration="1599000" />
+      <workItem from="1684363128398" duration="2907000" />
     </task>
     <task id="LOCAL-00001" summary="added Player">
       <created>1684277669296</created>
@@ -95,7 +95,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684278999809</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="fixed mapping by normalizing vecs">
+      <created>1684364762088</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1684364762088</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -115,6 +122,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added Player" />
     <MESSAGE value="started base 2d map drawing" />
-    <option name="LAST_COMMIT_MESSAGE" value="started base 2d map drawing" />
+    <MESSAGE value="fixed mapping by normalizing vecs" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed mapping by normalizing vecs" />
   </component>
 </project>
