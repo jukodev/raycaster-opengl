@@ -1,3 +1,4 @@
+import lombok.Getter;
 import lombok.val;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL;
@@ -12,6 +13,7 @@ public class Window {
     private Player player;
 
     private int mapX = 8, mapY = 8, mapS = 64;
+    @Getter
     private int map[] = {
             1,1,1,1,1,1,1,1,
             1,0,0,0,0,0,0,1,
@@ -45,7 +47,7 @@ public class Window {
 
         glClearColor(0.1f, 0.1f, 0.1f, 1.0f); //background color
 
-        player = new Player(window);
+        player = new Player(window, map);
     }
 
     private void loop() {
