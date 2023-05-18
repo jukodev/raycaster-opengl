@@ -9,6 +9,8 @@ import java.awt.*;
 import static org.lwjgl.opengl.GL11.*;
 
 public class Window {
+
+    private static final int WINDOW_WIDTH = 1024, WINDOW_HEIGHT = 512;
     private long window;
     private Player player;
 
@@ -37,7 +39,7 @@ public class Window {
             throw new IllegalStateException("Failed to initialize GLFW");
         }
 
-        window = GLFW.glfwCreateWindow(1024, 512, "RayCaster", 0, 0);
+        window = GLFW.glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "RayCaster", 0, 0);
         if (window == 0) {
             throw new RuntimeException("Failed to create the GLFW window");
         }
@@ -109,12 +111,20 @@ public class Window {
         }
     }
 
-    private static float getNormalX(int i){
-        return ((2.0f * i / 1024) - 1.0f);
+    public static float getNormalX(int i){
+        return ((2.0f * i / WINDOW_WIDTH) - 1.0f);
     }
 
-    private static float getNormalY(int i){
-        return (1.0f - (2.0f * i / 512));
+    public static float getNormalY(int i){
+        return (1.0f - (2.0f * i / WINDOW_HEIGHT));
+    }
+
+    public static float getNormalX(float i){
+        return ((2.0f * i / WINDOW_WIDTH) - 1.0f);
+    }
+
+    public static float getNormalY(float i){
+        return (1.0f - (2.0f * i / WINDOW_HEIGHT));
     }
 
 
