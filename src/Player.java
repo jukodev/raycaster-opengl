@@ -8,7 +8,7 @@ public class Player {
     private float xPos = 120, yPos = 120;
     @Getter
     private float deltaX, deltaY, angle;
-    private int[] map;
+    private final int[] map;
 
     public Player(long windowIndex, int[] map){
 
@@ -66,7 +66,6 @@ public class Player {
     private boolean checkMove(float x, float y){
         val _x = (int)(x / 64);
         val _y = (int)(y / 64);
-        System.out.println(x + " " + y );
         return map[_y*8+_x] == 0;
     }
 }

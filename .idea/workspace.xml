@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4c7c0bc6-3d9a-428a-a743-c759845d5fb2" name="Changes" comment="basic collision">
+    <list default="true" id="4c7c0bc6-3d9a-428a-a743-c759845d5fb2" name="Changes" comment="small enhancements">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Window.java" afterDir="false" />
@@ -81,7 +81,7 @@
       <workItem from="1684193190892" duration="5404000" />
       <workItem from="1684271687752" duration="7082000" />
       <workItem from="1684363128398" duration="5022000" />
-      <workItem from="1684412302149" duration="4320000" />
+      <workItem from="1684412302149" duration="5777000" />
     </task>
     <task id="LOCAL-00001" summary="added Player">
       <created>1684277669296</created>
@@ -118,7 +118,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684367837893</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="fixed collision, added basic rotation">
+      <created>1684432364390</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1684432364390</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -141,6 +148,8 @@
     <MESSAGE value="fixed mapping by normalizing vecs" />
     <MESSAGE value="nieder mit 4:3" />
     <MESSAGE value="basic collision" />
-    <option name="LAST_COMMIT_MESSAGE" value="basic collision" />
+    <MESSAGE value="fixed collision, added basic rotation" />
+    <MESSAGE value="small enhancements" />
+    <option name="LAST_COMMIT_MESSAGE" value="small enhancements" />
   </component>
 </project>

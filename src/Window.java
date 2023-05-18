@@ -1,11 +1,7 @@
 import lombok.Getter;
-import lombok.val;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
-
-import java.awt.*;
-
 import static org.lwjgl.opengl.GL11.*;
 
 public class Window {
@@ -14,9 +10,9 @@ public class Window {
     private long window;
     private Player player;
 
-    private int mapX = 8, mapY = 8, mapS = 64;
+    private final int mapX = 8, mapY = 8, mapS = 64;
     @Getter
-    private int map[] = {
+    private final int map[] = {
             1,1,1,1,1,1,1,1,
             1,0,0,0,0,0,0,1,
             1,0,1,1,1,0,0,1,
@@ -78,36 +74,6 @@ public class Window {
                 glVertex2f(getNormalX(mapS  +xo - 1), getNormalY(yo + 1));
                 glEnd();
             }
-        }
-    }
-
-    // draws pixel at given coordinates
-    private void drawPixel(int x, int y, Color color){
-        val ndcX = getNormalX(x);
-        val ndcY = getNormalY(y);
-        if(color != null)
-            GL11.glColor3f(color.getRed(), color.getGreen(), color.getBlue());
-        GL11.glVertex2f(ndcX, ndcY);
-    }
-
-
-    private void drawRay(Ray ray){
-        val xLength = ray.getEndX() - ray.getStartX();
-        val yLength = ray.getEndY() - ray.getStartY();
-        float xMulti = xLength > 0 ? 1 : -1;
-        float yMulti = yLength > 0 ? 1 : -1;
-        int usedLength;
-
-        if(Math.abs(xLength) > Math.abs(yLength)){
-            yMulti = (float)(yLength) / (float) Math.abs(xLength);
-            usedLength = Math.abs(xLength);
-        }else{
-            xMulti = (float)(xLength) / (float) Math.abs(yLength);
-            usedLength = Math.abs(yLength);
-        }
-
-        for(float i = 0; i <= usedLength; i ++){
-            drawPixel((int)(ray.getStartX() + i * xMulti), (int)(ray.getStartY() + i * yMulti), ray.getColor());
         }
     }
 
