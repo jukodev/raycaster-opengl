@@ -10,12 +10,15 @@ public class Player {
     private float deltaX, deltaY, angle;
     private final int[] map;
 
+    private RayCaster rayCaster;
+
     public Player(long windowIndex, int[] map){
 
         registerKeyCallBacks(windowIndex);
         this.map = map;
         deltaX = (float) (Math.cos(angle) * 5);
         deltaY = (float) (Math.sin(angle) * 5);
+        rayCaster = new RayCaster(map);
     }
 
     private void registerKeyCallBacks(long windowIndex){
@@ -46,6 +49,8 @@ public class Player {
     }
 
     public void draw(){
+        rayCaster.draw(xPos, yPos, angle);
+
         val ndcX = Window.getNormalX(xPos);
         val ndcY = Window.getNormalY(yPos);
         GL11.glPointSize(8);
