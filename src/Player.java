@@ -24,6 +24,7 @@ public class Player {
     }
 
     // register movement key callbacks
+    @SuppressWarnings("SuspiciousNameCombination") // sus
     private void registerKeyCallBacks(long windowIndex){
         GLFW.glfwSetKeyCallback(windowIndex, (window, key, scancode, action, mods) -> {
             if(action != GLFW.GLFW_REPEAT && action != GLFW.GLFW_PRESS) return;
@@ -67,16 +68,6 @@ public class Player {
                 GLFW.glfwSetInputMode(window, GLFW.GLFW_CURSOR, GLFW.GLFW_CURSOR_NORMAL);
             }
         });
-    }
-
-    // rotate the player using 'a' and 'd' keys, no longer needed
-    @Deprecated
-    private void rotate(int direction){
-        angle += .1f  * direction;
-        if(angle < 0) angle += 2* Math.PI;
-        if(angle > 2* Math.PI) angle -= 2* Math.PI;
-        deltaX = (float) (Math.cos(angle) * 5);
-        deltaY = (float) (Math.sin(angle) * 5);
     }
 
     public void draw(){

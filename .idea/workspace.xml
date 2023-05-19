@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4c7c0bc6-3d9a-428a-a743-c759845d5fb2" name="Changes" comment="added &quot;textures&quot;, fixed minor issues">
+    <list default="true" id="4c7c0bc6-3d9a-428a-a743-c759845d5fb2" name="Changes" comment="added basic texturing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RayCaster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RayCaster.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +88,7 @@
       <workItem from="1684445640485" duration="10048000" />
       <workItem from="1684496003107" duration="385000" />
       <workItem from="1684497477183" duration="625000" />
-      <workItem from="1684532700404" duration="4959000" />
+      <workItem from="1684532700404" duration="5171000" />
     </task>
     <task id="LOCAL-00001" summary="added Player">
       <created>1684277669296</created>
@@ -167,7 +167,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684537274164</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="added basic texturing">
+      <created>1684538490986</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1684538490986</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -196,6 +203,7 @@
     <MESSAGE value="small adjustments" />
     <MESSAGE value="minor code improvements" />
     <MESSAGE value="added &quot;textures&quot;, fixed minor issues" />
-    <option name="LAST_COMMIT_MESSAGE" value="added &quot;textures&quot;, fixed minor issues" />
+    <MESSAGE value="added basic texturing" />
+    <option name="LAST_COMMIT_MESSAGE" value="added basic texturing" />
   </component>
 </project>
