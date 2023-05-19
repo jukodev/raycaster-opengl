@@ -12,7 +12,7 @@ public class Window {
     private Player player;
 
     @Getter
-    private final int map[] = {
+    private final int[] map = {
             1,1,1,1,1,1,1,1,
             1,0,0,0,0,0,0,1,
             1,0,1,1,1,0,0,1,

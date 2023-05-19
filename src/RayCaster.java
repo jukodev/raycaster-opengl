@@ -1,7 +1,6 @@
 import org.lwjgl.opengl.GL11;
 
 public class RayCaster {
-    private final double P2 = Math.PI / 2, P3 = 3*Math.PI/2 , DR = 0.0174533;
     private double horizontalX, horizontalY, verticalX, verticalY;
     private final int[] map;
 
@@ -12,6 +11,7 @@ public class RayCaster {
     public void draw(float playerX, float playerY, float playerAngle){
         double rayPosX, rayPosY, rayAngle, distance;
 
+        double DR = 0.0174533;
         rayAngle = playerAngle - DR * 30;
         if(rayAngle < 0) rayAngle += 2 * Math.PI;
         if(rayAngle > 2 * Math.PI) rayAngle -= 2 * Math.PI;
@@ -119,14 +119,16 @@ public class RayCaster {
         double nTan = -Math.tan(rayAngle);
 
         // Looking left
-        if (rayAngle > P2 && rayAngle < P3) {
+        double p2 = Math.PI / 2;
+        double p3 = 3 * Math.PI / 2;
+        if (rayAngle > p2 && rayAngle < p3) {
             rayPosX = (((int) playerX >> 6) << 6) - 0.0001;
             rayPosY = (playerX - rayPosX) * nTan + playerY;
             offsetX = -64;
             offsetY = -offsetX * nTan;
         }
         // Looking right
-        else if (rayAngle < P2 || rayAngle > P3) {
+        else if (rayAngle < p2 || rayAngle > p3) {
             rayPosX = (((int) playerX >> 6) << 6) + 64;
             rayPosY = (playerX - rayPosX) * nTan + playerY;
             offsetX = 64;

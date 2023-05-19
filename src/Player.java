@@ -12,7 +12,7 @@ public class Player {
     private double prevMouseX;
     private final int[] map;
 
-    private RayCaster rayCaster;
+    private final RayCaster rayCaster;
 
     public Player(long windowIndex, int[] map){
         registerKeyCallBacks(windowIndex);
