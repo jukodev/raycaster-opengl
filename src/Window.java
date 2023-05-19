@@ -6,11 +6,11 @@ import static org.lwjgl.opengl.GL11.*;
 
 public class Window {
 
-    private static final int WINDOW_WIDTH = 1024, WINDOW_HEIGHT = 512;
-    private long window;
+    public static final int WINDOW_WIDTH = 1024, WINDOW_HEIGHT = 512;
+    public static final int MAP_X_LENGTH = 8, MAP_Y_LENGTH = 8, MAP_CHUNK_SIZE = 64;
+    private long windowIndex;
     private Player player;
 
-    private final int mapX = 8, mapY = 8, mapS = 64;
     @Getter
     private final int map[] = {
             1,1,1,1,1,1,1,1,
@@ -35,43 +35,43 @@ public class Window {
             throw new IllegalStateException("Failed to initialize GLFW");
         }
 
-        window = GLFW.glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "RayCaster", 0, 0);
-        if (window == 0) {
+        windowIndex = GLFW.glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "RayCaster", 0, 0);
+        if (windowIndex == 0) {
             throw new RuntimeException("Failed to create the GLFW window");
         }
 
-        GLFW.glfwMakeContextCurrent(window);
+        GLFW.glfwMakeContextCurrent(windowIndex);
         GL.createCapabilities();
 
         glClearColor(0.1f, 0.1f, 0.1f, 1.0f); //background color
 
-        player = new Player(window, map);
+        player = new Player(windowIndex, map);
     }
 
     private void loop() {
-        while (!GLFW.glfwWindowShouldClose(window)) {
+        while (!GLFW.glfwWindowShouldClose(windowIndex)) {
             GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
             drawMap();
             player.draw();
 
-            GLFW.glfwSwapBuffers(window);
+            GLFW.glfwSwapBuffers(windowIndex);
             GLFW.glfwPollEvents();
         }
     }
 
     private void drawMap(){
         int xo, yo;
-        for(int y = 0; y < mapY; y++){
-            for(int x = 0; x < mapX; x++){
-                int color = map[y*mapX+x] == 1 ? 1 : 0;
+        for(int y = 0; y < MAP_Y_LENGTH; y++){
+            for(int x = 0; x < MAP_X_LENGTH; x++){
+                int color = map[y* MAP_X_LENGTH +x] == 1 ? 1 : 0;
                 glColor3f(color, color, color);
-                xo = x*mapS;
-                yo = y*mapS;
+                xo = x* MAP_CHUNK_SIZE;
+                yo = y* MAP_CHUNK_SIZE;
                 glBegin(GL_QUADS);
                 glVertex2f(getNormalX(xo + 1), getNormalY(yo + 1));
-                glVertex2f(getNormalX(xo + 1), getNormalY(mapS + yo - 1));
-                glVertex2f(getNormalX(mapS + xo - 1), getNormalY(mapS + yo - 1));
-                glVertex2f(getNormalX(mapS  +xo - 1), getNormalY(yo + 1));
+                glVertex2f(getNormalX(xo + 1), getNormalY(MAP_CHUNK_SIZE + yo - 1));
+                glVertex2f(getNormalX(MAP_CHUNK_SIZE + xo - 1), getNormalY(MAP_CHUNK_SIZE + yo - 1));
+                glVertex2f(getNormalX(MAP_CHUNK_SIZE +xo - 1), getNormalY(yo + 1));
                 glEnd();
             }
         }

@@ -47,14 +47,14 @@ public class RayCaster {
     }
 
     private void drawVerticalLine(int index, double distance, float playerAngle, double rayAngle) {
-        double ca = playerAngle - rayAngle;
-        if (ca < 0) {
-            ca += 2 * Math.PI;
+        double normalizedAngle = playerAngle - rayAngle;
+        if (normalizedAngle < 0) {
+            normalizedAngle += 2 * Math.PI;
         }
-        if (ca > 2 * Math.PI) {
-            ca -= 2 * Math.PI;
+        if (normalizedAngle > 2 * Math.PI) {
+            normalizedAngle -= 2 * Math.PI;
         }
-        distance *= Math.cos(ca);
+        distance *= Math.cos(normalizedAngle);
         double lineH = (64 * 320) / distance;
         double lineO = 160 - lineH / 2;
 
@@ -100,7 +100,7 @@ public class RayCaster {
             if (mapIndex > 0 && mapIndex < 64 && map[mapIndex] == 1) {
                 horizontalX = rayPosX;
                 horizontalY = rayPosY;
-                horizontalDistance = distance(playerX, playerY, horizontalX, horizontalY, rayAngle);
+                horizontalDistance = distance(playerX, playerY, horizontalX, horizontalY);
                 rayDepth = 8;
             } else {
                 rayPosX += offsetX;
@@ -146,7 +146,7 @@ public class RayCaster {
             if (mapIndex > 0 && mapIndex < 64 && map[mapIndex] == 1) {
                 verticalX = rayPosX;
                 verticalY = rayPosY;
-                verticalDistance = distance(playerX, playerY, verticalX, verticalY, rayAngle);
+                verticalDistance = distance(playerX, playerY, verticalX, verticalY);
                 rayDepth = 8;
             } else {
                 rayPosX += offsetX;
@@ -158,7 +158,7 @@ public class RayCaster {
     }
 
 
-    private double distance(double ax, double ay, double bx, double by, double angle){
+    private double distance(double ax, double ay, double bx, double by){
         return (Math.sqrt((bx - ax) * (bx - ax) + (by - ay)* (by - ay)));
     }
 }

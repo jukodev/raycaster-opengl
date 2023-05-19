@@ -8,21 +8,23 @@ public class Player {
     private float xPos = 120, yPos = 120;
     @Getter
     private float deltaX, deltaY, angle;
+
+    private double prevMouseX;
     private final int[] map;
 
     private RayCaster rayCaster;
 
     public Player(long windowIndex, int[] map){
-
         registerKeyCallBacks(windowIndex);
+        registerMouseCallbacks(windowIndex);
         this.map = map;
         deltaX = (float) (Math.cos(angle) * 5);
         deltaY = (float) (Math.sin(angle) * 5);
         rayCaster = new RayCaster(map);
     }
 
+    // register movement key callbacks
     private void registerKeyCallBacks(long windowIndex){
-
         GLFW.glfwSetKeyCallback(windowIndex, (window, key, scancode, action, mods) -> {
             if(action != GLFW.GLFW_REPEAT && action != GLFW.GLFW_PRESS) return;
             val prevX = xPos;
@@ -40,6 +42,34 @@ public class Player {
         });
     }
 
+    // register callbacks needed to rotate the player with the mouse
+    private void registerMouseCallbacks(long windowIndex) {
+        GLFW.glfwSetCursorPosCallback(windowIndex, (window, xpos, ypos) -> {
+            if (prevMouseX != -1) {
+                double dx = xpos - prevMouseX;
+                if (dx != 0) {
+                    angle += dx * 0.01;  // Adjust the rotation speed as needed
+                    deltaX = (float) (Math.cos(angle) * 5);
+                    deltaY = (float) (Math.sin(angle) * 5);
+                }
+            }
+            prevMouseX = xpos;
+        });
+
+        GLFW.glfwSetCursorEnterCallback(windowIndex, (window, entered) -> {
+            if (entered) {
+                prevMouseX = 768;
+                GLFW.glfwSetCursorPos(window, prevMouseX, 256);
+                GLFW.glfwSetInputMode(window, GLFW.GLFW_CURSOR, GLFW.GLFW_CURSOR_DISABLED);
+            } else {
+                prevMouseX = -1;
+                GLFW.glfwSetInputMode(window, GLFW.GLFW_CURSOR, GLFW.GLFW_CURSOR_NORMAL);
+            }
+        });
+    }
+
+    // rotate the player using 'a' and 'd' keys, no longer needed
+    @Deprecated
     private void rotate(int direction){
         angle += .1f  * direction;
         if(angle < 0) angle += 2* Math.PI;
@@ -49,7 +79,7 @@ public class Player {
     }
 
     public void draw(){
-        rayCaster.draw(xPos, yPos, angle);
+        rayCaster.draw(xPos, yPos, angle); // draw the "3D render"
 
         val ndcX = Window.getNormalX(xPos);
         val ndcY = Window.getNormalY(yPos);
@@ -64,10 +94,9 @@ public class Player {
         GL11.glVertex2f(Window.getNormalX(xPos), Window.getNormalY(yPos));
         GL11.glVertex2f(Window.getNormalX(xPos + deltaX * 5), Window.getNormalY(yPos + deltaY * 5));
         GL11.glEnd();
-
-
     }
 
+    // check for possible collisions with walls
     private boolean checkMove(float x, float y){
         val _x = (int)(x / 64);
         val _y = (int)(y / 64);
