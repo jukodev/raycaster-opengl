@@ -34,7 +34,8 @@ public class Window {
         if (!GLFW.glfwInit()) {
             throw new IllegalStateException("Failed to initialize GLFW");
         }
-
+        GLFW.glfwDefaultWindowHints();
+        GLFW.glfwWindowHint(GLFW.GLFW_RESIZABLE, GLFW.GLFW_FALSE);
         windowIndex = GLFW.glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "RayCaster", 0, 0);
         if (windowIndex == 0) {
             throw new RuntimeException("Failed to create the GLFW window");

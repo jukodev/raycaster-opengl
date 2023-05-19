@@ -58,11 +58,17 @@ public class RayCaster {
         double lineH = (64 * 320) / distance;
         double lineO = 160 - lineH / 2;
 
-        GL11.glLineWidth(8);
-        GL11.glBegin(GL11.GL_LINES);
-        GL11.glVertex2f(Window.getNormalX(index * 8 + 530), Window.getNormalY((float) lineO));
-        GL11.glVertex2f(Window.getNormalX(index * 8 + 530), Window.getNormalY((float) (lineH + lineO)));
-        GL11.glEnd();
+        float textureY = 0;
+        float textureYStep = 32f / (float) lineH;
+        for(int i = 0; i < lineH; i++){
+            float c = DataDump.ALL_TEXTURES[(int) (textureY) * 32];
+
+            GL11.glBegin(GL11.GL_POINTS);
+            GL11.glVertex2f(Window.getNormalX(index * 8 + 530), Window.getNormalY((float) lineO + i));
+            GL11.glEnd();
+        }
+
+
     }
 
     private double castHorizontalRay(float playerX, float playerY, double rayAngle) {

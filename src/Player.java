@@ -31,9 +31,10 @@ public class Player {
             val prevY = yPos;
             switch (key) {
                 case GLFW.GLFW_KEY_W -> {xPos += deltaX; yPos += deltaY;}
-                case GLFW.GLFW_KEY_A -> rotate(-1);
-                case GLFW.GLFW_KEY_D -> rotate(1);
+                case GLFW.GLFW_KEY_A -> {xPos += deltaY; yPos -= deltaX;} // orthogonal vector
+                case GLFW.GLFW_KEY_D -> {xPos -= deltaY; yPos += deltaX;}
                 case GLFW.GLFW_KEY_S -> {xPos -= deltaX; yPos -= deltaY;}
+                case GLFW.GLFW_KEY_ESCAPE -> GLFW.glfwSetWindowShouldClose(windowIndex, true);
             }
             if(!checkMove(xPos, yPos)){
                 xPos = prevX;
