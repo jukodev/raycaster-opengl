@@ -19,26 +19,26 @@ public class RayCaster {
         for(int i = 0; i < 60; i++){
             double disV = castVerticalRay(playerX, playerY, rayAngle);
             double disH = castHorizontalRay(playerX, playerY, rayAngle);
+            float shading = 1f;
             if(disV < disH){
                 rayPosX = verticalX;
                 rayPosY = verticalY;
                 distance = disV;
-                GL11.glColor3f(.7f,0,0);
+                shading = .5f;
 
             }else{
                 rayPosX = horizontalX;
                 rayPosY = horizontalY;
                 distance = disH;
-                GL11.glColor3f(.8f,0,0);
             }
-
+            GL11.glColor3f(0,1,1);
             GL11.glLineWidth(1);
             GL11.glBegin(GL11.GL_LINES);
             GL11.glVertex2f(Window.getNormalX(playerX), Window.getNormalY(playerY));
             GL11.glVertex2f(Window.getNormalX((float) rayPosX), Window.getNormalY((float) rayPosY));
             GL11.glEnd();
 
-            drawVerticalLine(i, distance, playerAngle, rayAngle);
+            drawVerticalLine(i, distance, playerAngle, rayAngle, shading,  rayPosX, rayPosY);
 
             rayAngle += DR;
             if(rayAngle < 0) rayAngle += 2 * Math.PI;
@@ -46,7 +46,7 @@ public class RayCaster {
         }
     }
 
-    private void drawVerticalLine(int index, double distance, float playerAngle, double rayAngle) {
+    private void drawVerticalLine(int index, double distance, float playerAngle, double rayAngle, float shading, double rayPosX, double rayPosY) {
         double normalizedAngle = playerAngle - rayAngle;
         if (normalizedAngle < 0) {
             normalizedAngle += 2 * Math.PI;
@@ -59,13 +59,27 @@ public class RayCaster {
         double lineO = 160 - lineH / 2;
 
         float textureY = 0;
-        float textureYStep = 32f / (float) lineH;
-        for(int i = 0; i < lineH; i++){
-            float c = DataDump.ALL_TEXTURES[(int) (textureY) * 32];
+        float textureX;
+        if(shading == 1){
+            textureX = (int) (rayPosX / 2.0) % 32;
+            if(rayAngle > 180) textureX = 31-textureX;
+        }
+        else{
+            textureX = (int) (rayPosY / 2.0) % 32;
+            if(rayAngle > 90 && rayAngle < 270) textureX = 31-textureX;
+        }
 
+        textureY += 32;
+
+        float textureYStep = 32f / (float) lineH;
+
+        for(int i = 0; i < lineH; i++){
+            float c = DataDump.ALL_TEXTURES[(int) (textureY) * 32 + (int) (textureX)] * shading;
+            GL11.glColor3f(c,c,c);
             GL11.glBegin(GL11.GL_POINTS);
             GL11.glVertex2f(Window.getNormalX(index * 8 + 530), Window.getNormalY((float) lineO + i));
             GL11.glEnd();
+            textureY += textureYStep;
         }
 
 

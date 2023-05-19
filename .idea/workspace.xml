@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4c7c0bc6-3d9a-428a-a743-c759845d5fb2" name="Changes" comment="minor code improvements">
-      <change afterPath="$PROJECT_DIR$/src/DataDump.java" afterDir="false" />
+    <list default="true" id="4c7c0bc6-3d9a-428a-a743-c759845d5fb2" name="Changes" comment="added &quot;textures&quot;, fixed minor issues">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/RayCaster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RayCaster.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Window.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +21,7 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIEW_PUSH_PROTECTED_ONLY" value="true" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -90,7 +88,7 @@
       <workItem from="1684445640485" duration="10048000" />
       <workItem from="1684496003107" duration="385000" />
       <workItem from="1684497477183" duration="625000" />
-      <workItem from="1684532700404" duration="3855000" />
+      <workItem from="1684532700404" duration="4959000" />
     </task>
     <task id="LOCAL-00001" summary="added Player">
       <created>1684277669296</created>
@@ -162,7 +160,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684455258805</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="added &quot;textures&quot;, fixed minor issues">
+      <created>1684537274164</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1684537274164</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -190,6 +195,7 @@
     <MESSAGE value="added RayCaster, made raycasting work" />
     <MESSAGE value="small adjustments" />
     <MESSAGE value="minor code improvements" />
-    <option name="LAST_COMMIT_MESSAGE" value="minor code improvements" />
+    <MESSAGE value="added &quot;textures&quot;, fixed minor issues" />
+    <option name="LAST_COMMIT_MESSAGE" value="added &quot;textures&quot;, fixed minor issues" />
   </component>
 </project>
