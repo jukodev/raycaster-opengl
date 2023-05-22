@@ -81,7 +81,7 @@ public class RayCaster {
             byte r = texture.getColors()[((int) (textureY) * 32 + (int) (textureX)) % 1024].getR();
             byte g = texture.getColors()[((int) (textureY) * 32 + (int) (textureX)) % 1024].getG();
             byte b = texture.getColors()[((int) (textureY) * 32 + (int) (textureX)) % 1024].getB();
-            GL11.glColor3b(r,g,b);
+            GL11.glColor3b(b,g, r);
             GL11.glBegin(GL11.GL_POINTS);
             GL11.glVertex2f(Window.getNormalX(index * 8 + 530), Window.getNormalY((float) lineO + i));
             GL11.glEnd();
