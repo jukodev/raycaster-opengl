@@ -4,8 +4,11 @@ public class RayCaster {
     private double horizontalX, horizontalY, verticalX, verticalY;
     private final int[] map;
 
+    private final Texture texture;
+
     public RayCaster(int[] map) {
         this.map = map;
+        texture = new Texture("C:\\Users\\consult\\Pictures\\test_tex.png");
     }
 
     public void draw(float playerX, float playerY, float playerAngle){
@@ -69,13 +72,16 @@ public class RayCaster {
             if(rayAngle > 90 && rayAngle < 270) textureX = 31-textureX;
         }
 
-        textureY += 32;
+        // textureY += 32;
 
         float textureYStep = 32f / (float) lineH;
 
         for(int i = 0; i < lineH; i++){
-            float c = DataDump.ALL_TEXTURES[(int) (textureY) * 32 + (int) (textureX)] * shading;
-            GL11.glColor3f(c,c,c);
+            // float c = DataDump.ALL_TEXTURES[(int) (textureY) * 32 + (int) (textureX)] * shading;
+            byte r = texture.getColors()[((int) (textureY) * 32 + (int) (textureX)) % 1024].getR();
+            byte g = texture.getColors()[((int) (textureY) * 32 + (int) (textureX)) % 1024].getG();
+            byte b = texture.getColors()[((int) (textureY) * 32 + (int) (textureX)) % 1024].getB();
+            GL11.glColor3b(r,g,b);
             GL11.glBegin(GL11.GL_POINTS);
             GL11.glVertex2f(Window.getNormalX(index * 8 + 530), Window.getNormalY((float) lineO + i));
             GL11.glEnd();

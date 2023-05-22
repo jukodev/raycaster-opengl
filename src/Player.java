@@ -12,6 +12,10 @@ public class Player {
     private double prevMouseX;
     private final int[] map;
 
+    private int moveVert = 0, moveHor = 0;
+
+    private long lastFrameTime;
+
     private final RayCaster rayCaster;
 
     public Player(long windowIndex, int[] map){
@@ -27,19 +31,15 @@ public class Player {
     @SuppressWarnings("SuspiciousNameCombination") // sus
     private void registerKeyCallBacks(long windowIndex){
         GLFW.glfwSetKeyCallback(windowIndex, (window, key, scancode, action, mods) -> {
-            if(action != GLFW.GLFW_REPEAT && action != GLFW.GLFW_PRESS) return;
-            val prevX = xPos;
-            val prevY = yPos;
+            if(action != GLFW.GLFW_RELEASE && action != GLFW.GLFW_PRESS) return;
+            val pressed = action == GLFW.GLFW_PRESS ? 1 : 0;
+
             switch (key) {
-                case GLFW.GLFW_KEY_W -> {xPos += deltaX; yPos += deltaY;}
-                case GLFW.GLFW_KEY_A -> {xPos += deltaY; yPos -= deltaX;} // orthogonal vector
-                case GLFW.GLFW_KEY_D -> {xPos -= deltaY; yPos += deltaX;}
-                case GLFW.GLFW_KEY_S -> {xPos -= deltaX; yPos -= deltaY;}
+                case GLFW.GLFW_KEY_W -> moveHor = pressed;
+                case GLFW.GLFW_KEY_A -> moveVert = pressed; // orthogonal vector
+                case GLFW.GLFW_KEY_D -> moveVert = -pressed;
+                case GLFW.GLFW_KEY_S -> moveHor = -pressed;
                 case GLFW.GLFW_KEY_ESCAPE -> GLFW.glfwSetWindowShouldClose(windowIndex, true);
-            }
-            if(!checkMove(xPos, yPos)){
-                xPos = prevX;
-                yPos = prevY;
             }
         });
     }
@@ -70,7 +70,29 @@ public class Player {
         });
     }
 
+    private void movePlayer(){
+        val prevX = xPos;
+        val prevY = yPos;
+        float deltaTime = (System.currentTimeMillis() - lastFrameTime) / 100f;
+        lastFrameTime = System.currentTimeMillis();
+
+        if(moveVert != 0){
+            xPos += moveVert * deltaY * deltaTime;
+            yPos -= moveVert * deltaX * deltaTime;
+        }
+        if(moveHor != 0){
+            xPos += moveHor * deltaX * deltaTime;
+            yPos += moveHor * deltaY * deltaTime;
+        }
+
+        if(!checkMove(xPos, yPos)){
+            xPos = prevX;
+            yPos = prevY;
+        }
+    }
+
     public void draw(){
+        movePlayer();
         rayCaster.draw(xPos, yPos, angle); // draw the "3D render"
 
         val ndcX = Window.getNormalX(xPos);
