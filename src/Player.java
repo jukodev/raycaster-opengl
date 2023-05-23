@@ -28,9 +28,15 @@ public class Player {
     }
 
     // register movement key callbacks
-    @SuppressWarnings("SuspiciousNameCombination") // sus
     private void registerKeyCallBacks(long windowIndex){
         GLFW.glfwSetKeyCallback(windowIndex, (window, key, scancode, action, mods) -> {
+            if(action == GLFW.GLFW_PRESS){
+                switch (key){
+                    case GLFW.GLFW_KEY_UP -> RayCaster.RES_SCALE = RayCaster.RES_SCALE < 8 ? RayCaster.RES_SCALE * 2 : 8;
+                    case GLFW.GLFW_KEY_DOWN -> RayCaster.RES_SCALE = RayCaster.RES_SCALE > 1 ? RayCaster.RES_SCALE / 2 : 1;
+                }
+            }
+
             if(action != GLFW.GLFW_RELEASE && action != GLFW.GLFW_PRESS) return;
             val pressed = action == GLFW.GLFW_PRESS ? 1 : 0;
 

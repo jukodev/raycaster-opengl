@@ -1,4 +1,5 @@
 import org.lwjgl.opengl.GL11;
+import java.io.IOException;
 
 public class RayCaster {
     private double horizontalX, horizontalY, verticalX, verticalY;
@@ -8,18 +9,24 @@ public class RayCaster {
 
     public RayCaster(int[] map) {
         this.map = map;
-        texture = new Texture("C:\\Users\\consult\\Pictures\\test_tex.png");
+        try {
+            texture = new Texture("F:\\Bibliothek\\Library\\hase32.jpg");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
+
+    public static int RES_SCALE = 8;
 
     public void draw(float playerX, float playerY, float playerAngle){
         double rayPosX, rayPosY, rayAngle, distance;
 
-        double DR = 0.0174533;
-        rayAngle = playerAngle - DR * 30;
+        double DR = 0.0174533 / RES_SCALE;
+        rayAngle = playerAngle - DR * 30 * RES_SCALE;
         if(rayAngle < 0) rayAngle += 2 * Math.PI;
         if(rayAngle > 2 * Math.PI) rayAngle -= 2 * Math.PI;
 
-        for(int i = 0; i < 60; i++){
+        for(int i = 0; i < 60 * RES_SCALE; i++){
             double disV = castVerticalRay(playerX, playerY, rayAngle);
             double disH = castHorizontalRay(playerX, playerY, rayAngle);
             float shading = 1f;
@@ -59,7 +66,9 @@ public class RayCaster {
         }
         distance *= Math.cos(normalizedAngle);
         double lineH = (64 * 320) / distance;
+
         double lineO = 160 - lineH / 2;
+
 
         float textureY = 0;
         float textureX;
@@ -78,12 +87,12 @@ public class RayCaster {
 
         for(int i = 0; i < lineH; i++){
             // float c = DataDump.ALL_TEXTURES[(int) (textureY) * 32 + (int) (textureX)] * shading;
-            byte r = texture.getColors()[((int) (textureY) * 32 + (int) (textureX)) % 1024].getR();
-            byte g = texture.getColors()[((int) (textureY) * 32 + (int) (textureX)) % 1024].getG();
-            byte b = texture.getColors()[((int) (textureY) * 32 + (int) (textureX)) % 1024].getB();
-            GL11.glColor3b(b,g, r);
+            float r =  (texture.getColors()[((int) (textureY) * 32 + (int) (textureX)) % 1024].getRed());
+            float g =  (texture.getColors()[((int) (textureY) * 32 + (int) (textureX)) % 1024].getGreen());
+            float b =  (texture.getColors()[((int) (textureY) * 32 + (int) (textureX)) % 1024].getBlue());
+            GL11.glColor3f(r, g, b);
             GL11.glBegin(GL11.GL_POINTS);
-            GL11.glVertex2f(Window.getNormalX(index * 8 + 530), Window.getNormalY((float) lineO + i));
+            GL11.glVertex2f(Window.getNormalX(index * (8 / RES_SCALE) + 530), Window.getNormalY((float) lineO + i));
             GL11.glEnd();
             textureY += textureYStep;
         }

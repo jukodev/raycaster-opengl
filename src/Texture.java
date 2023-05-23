@@ -7,29 +7,26 @@ import java.io.IOException;
 
 public class Texture {
     @Getter
-    private final Color[] colors = new Color[1024];
+    private final Color[] colors;
 
-    public Texture(String path){
+    public Texture(String path) throws IOException {
         File file = new File(path);
-        try {
-            BufferedImage image = ImageIO.read(file);
-            int index = 0;
-            for(int y = 0; y < 32; y++){
-                for(int x = 0; x < 32; x++){
-                    int rgb = image.getRGB(x,y);
-                    colors [index] = new Color((byte) (rgb >> 16), (byte) (rgb >> 8), (byte) (rgb & 0xFF));
-                    index++;
-                }
+        if (!file.exists()) {
+            throw new IOException("File not found: " + path);
+        }
+
+        BufferedImage image = ImageIO.read(file);
+        colors = new Color[1024];
+        int index = 0;
+        for(int y = 0; y < image.getHeight(); y++){
+            for(int x = 0; x < image.getWidth(); x++){
+                int rgb = image.getRGB(x,y);
+                int red = (rgb >> 16) & 0xFF;
+                int green = (rgb >> 8) & 0xFF;
+                int blue = rgb & 0xFF;
+                colors[index] = new Color(red / 255.0f, green / 255.0f, blue / 255.0f);
+                index++;
             }
-        } catch (IOException e) {
-            throw new RuntimeException("File not found: " + path);
         }
     }
-
-    public record Color(byte r, byte g, byte b){
-        public byte getR(){return r;}
-        public byte getG(){return g;}
-        public byte getB(){return b;}
-    }
-
 }

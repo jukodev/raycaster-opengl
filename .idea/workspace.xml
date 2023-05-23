@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4c7c0bc6-3d9a-428a-a743-c759845d5fb2" name="Changes" comment="new movement, added basic texture reading">
+    <list default="true" id="4c7c0bc6-3d9a-428a-a743-c759845d5fb2" name="Changes" comment="made colors work, added render scaling">
+      <change afterPath="$PROJECT_DIR$/src/Color.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/RayCaster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RayCaster.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Texture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Texture.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +20,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Record" />
       </list>
     </option>
   </component>
@@ -213,6 +217,7 @@
     <MESSAGE value="added &quot;textures&quot;, fixed minor issues" />
     <MESSAGE value="added basic texturing" />
     <MESSAGE value="new movement, added basic texture reading" />
-    <option name="LAST_COMMIT_MESSAGE" value="new movement, added basic texture reading" />
+    <MESSAGE value="made colors work, added render scaling" />
+    <option name="LAST_COMMIT_MESSAGE" value="made colors work, added render scaling" />
   </component>
 </project>
