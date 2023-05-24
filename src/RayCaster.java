@@ -10,7 +10,7 @@ public class RayCaster {
     public RayCaster(int[] map) {
         this.map = map;
         try {
-            texture = new Texture("F:\\Bibliothek\\Library\\hase32.jpg");
+            texture = new Texture("rsc\\texture_bricks.png");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -66,6 +66,7 @@ public class RayCaster {
         }
         distance *= Math.cos(normalizedAngle);
         double lineH = (64 * 320) / distance;
+        if(lineH > 2000) lineH = 2000;
 
         double lineO = 160 - lineH / 2;
 
@@ -81,8 +82,6 @@ public class RayCaster {
             if(rayAngle > 90 && rayAngle < 270) textureX = 31-textureX;
         }
 
-        // textureY += 32;
-
         float textureYStep = 32f / (float) lineH;
 
         for(int i = 0; i < lineH; i++){
@@ -92,7 +91,9 @@ public class RayCaster {
             float b =  (texture.getColors()[((int) (textureY) * 32 + (int) (textureX)) % 1024].getBlue());
             GL11.glColor3f(r, g, b);
             GL11.glBegin(GL11.GL_POINTS);
-            GL11.glVertex2f(Window.getNormalX(index * (8 / RES_SCALE) + 530), Window.getNormalY((float) lineO + i));
+            float y = (float) lineO + i;
+
+            GL11.glVertex2f(Window.getNormalX(index * (8 / RES_SCALE) + 530), Window.getNormalY(y));
             GL11.glEnd();
             textureY += textureYStep;
         }
