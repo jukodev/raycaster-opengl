@@ -58,8 +58,11 @@ public class RayCaster {
             if(rayAngle < 0) rayAngle += 2 * Math.PI;
             if(rayAngle > 2 * Math.PI) rayAngle -= 2 * Math.PI;
         }
+        System.out.println(pixelCount);
+        pixelCount = 0;
     }
 
+    int pixelCount = 0;
     private void drawVerticalLine(int index, double distance, float playerAngle, double rayAngle, float shading, double rayPosX, double rayPosY) {
         double normalizedAngle = playerAngle - rayAngle;
         if (normalizedAngle < 0) {
@@ -105,6 +108,7 @@ public class RayCaster {
             GL11.glVertex2f(Window.getNormalX(index * (8 / RES_SCALE) + 530), Window.getNormalY(y));
             GL11.glEnd();
             textureY += textureYStep;
+            pixelCount ++;
         }
 
 
