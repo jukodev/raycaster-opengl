@@ -85,10 +85,9 @@ public class RayCaster {
         float textureYStep = 32f / (float) lineH;
 
         for(int i = 0; i < lineH; i++){
-            // float c = DataDump.ALL_TEXTURES[(int) (textureY) * 32 + (int) (textureX)] * shading;
-            float r =  (texture.getColors()[((int) (textureY) * 32 + (int) (textureX)) % 1024].getRed());
-            float g =  (texture.getColors()[((int) (textureY) * 32 + (int) (textureX)) % 1024].getGreen());
-            float b =  (texture.getColors()[((int) (textureY) * 32 + (int) (textureX)) % 1024].getBlue());
+            float r =  (texture.getColors()[((int) (textureY) * 32 + (int) (textureX)) % 1024].getRed()) * shading;
+            float g =  (texture.getColors()[((int) (textureY) * 32 + (int) (textureX)) % 1024].getGreen()) * shading;
+            float b =  (texture.getColors()[((int) (textureY) * 32 + (int) (textureX)) % 1024].getBlue()) * shading;
             GL11.glColor3f(r, g, b);
             GL11.glBegin(GL11.GL_POINTS);
             float y = (float) lineO + i;
