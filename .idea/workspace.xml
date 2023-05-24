@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4c7c0bc6-3d9a-428a-a743-c759845d5fb2" name="Changes" comment="new texture, render optimization fix">
+    <list default="true" id="4c7c0bc6-3d9a-428a-a743-c759845d5fb2" name="Changes" comment="added support for multiple textures, z fighting remains">
+      <change afterPath="$PROJECT_DIR$/rsc/texture_broken.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataDump.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/RayCaster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RayCaster.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Window.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -203,7 +204,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684887448661</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="removed old texture system">
+      <created>1684887625208</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1684887625208</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -236,6 +244,8 @@
     <MESSAGE value="new movement, added basic texture reading" />
     <MESSAGE value="made colors work, added render scaling" />
     <MESSAGE value="new texture, render optimization fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="new texture, render optimization fix" />
+    <MESSAGE value="removed old texture system" />
+    <MESSAGE value="added support for multiple textures, z fighting remains" />
+    <option name="LAST_COMMIT_MESSAGE" value="added support for multiple textures, z fighting remains" />
   </component>
 </project>

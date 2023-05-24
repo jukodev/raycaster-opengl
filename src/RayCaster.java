@@ -1,16 +1,20 @@
 import org.lwjgl.opengl.GL11;
+
 import java.io.IOException;
 
 public class RayCaster {
     private double horizontalX, horizontalY, verticalX, verticalY;
     private final int[] map;
 
-    private final Texture texture;
+    private int currentType = 0;
+
+    private final Texture textureBrick, textureBroken;
 
     public RayCaster(int[] map) {
         this.map = map;
         try {
-            texture = new Texture("rsc\\texture_bricks.png");
+            textureBrick = new Texture("rsc\\texture_bricks.png");
+            textureBroken = new Texture("rsc\\texture_broken.png");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -84,10 +88,16 @@ public class RayCaster {
 
         float textureYStep = 32f / (float) lineH;
 
+        var usedTexture = switch (currentType){
+            case 1 -> textureBrick;
+            case 2 -> textureBroken;
+            default -> null;
+        };
+
         for(int i = 0; i < lineH; i++){
-            float r =  (texture.getColors()[((int) (textureY) * 32 + (int) (textureX)) % 1024].getRed()) * shading;
-            float g =  (texture.getColors()[((int) (textureY) * 32 + (int) (textureX)) % 1024].getGreen()) * shading;
-            float b =  (texture.getColors()[((int) (textureY) * 32 + (int) (textureX)) % 1024].getBlue()) * shading;
+            float r =  (usedTexture.getColors()[((int) (textureY) * 32 + (int) (textureX)) % 1024].getRed()) * shading;
+            float g =  (usedTexture.getColors()[((int) (textureY) * 32 + (int) (textureX)) % 1024].getGreen()) * shading;
+            float b =  (usedTexture.getColors()[((int) (textureY) * 32 + (int) (textureX)) % 1024].getBlue()) * shading;
             GL11.glColor3f(r, g, b);
             GL11.glBegin(GL11.GL_POINTS);
             float y = (float) lineO + i;
@@ -132,8 +142,9 @@ public class RayCaster {
             mapX = (int) rayPosX >> 6;
             mapY = (int) rayPosY >> 6;
             mapIndex = mapY * 8 + mapX;
-            if (mapIndex > 0 && mapIndex < 64 && map[mapIndex] == 1) {
+            if (mapIndex > 0 && mapIndex < 64 && map[mapIndex] > 0) {
                 horizontalX = rayPosX;
+                currentType = map[mapIndex];
                 horizontalY = rayPosY;
                 horizontalDistance = distance(playerX, playerY, horizontalX, horizontalY);
                 rayDepth = 8;
@@ -180,9 +191,10 @@ public class RayCaster {
             mapX = (int) rayPosX >> 6;
             mapY = (int) rayPosY >> 6;
             mapIndex = mapY * 8 + mapX;
-            if (mapIndex > 0 && mapIndex < 64 && map[mapIndex] == 1) {
+            if (mapIndex > 0 && mapIndex < 64 && map[mapIndex] > 0) {
                 verticalX = rayPosX;
                 verticalY = rayPosY;
+                currentType = map[mapIndex];
                 verticalDistance = distance(playerX, playerY, verticalX, verticalY);
                 rayDepth = 8;
             } else {

@@ -15,8 +15,8 @@ public class Window {
     private final int[] map = {
             1,1,1,1,1,1,1,1,
             1,0,0,0,0,0,0,1,
-            1,0,1,1,1,0,0,1,
-            1,0,0,1,0,0,0,1,
+            1,0,0,0,2,0,0,1,
+            1,0,0,1,2,0,0,1,
             1,0,0,0,0,0,0,1,
             1,0,1,0,0,1,0,1,
             1,0,0,0,0,1,0,1,
@@ -64,7 +64,7 @@ public class Window {
         int xo, yo;
         for(int y = 0; y < MAP_Y_LENGTH; y++){
             for(int x = 0; x < MAP_X_LENGTH; x++){
-                int color = map[y* MAP_X_LENGTH +x] == 1 ? 1 : 0;
+                int color = map[y* MAP_X_LENGTH +x] > 0 ? 1 : 0;
                 glColor3f(color, color, color);
                 xo = x* MAP_CHUNK_SIZE;
                 yo = y* MAP_CHUNK_SIZE;
