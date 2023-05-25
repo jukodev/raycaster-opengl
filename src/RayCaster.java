@@ -2,9 +2,7 @@ import org.lwjgl.opengl.GL11;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.util.Arrays;
-import java.util.stream.Stream;
+import java.util.Objects;
 
 public class RayCaster {
     private double horizontalX, horizontalY, verticalX, verticalY;
@@ -12,15 +10,15 @@ public class RayCaster {
 
     private int currentType = 0;
 
-    private Texture[] textures;
+    private final Texture[] textures;
 
     public RayCaster(int[] map) {
         this.map = map;
         File folder = new File("rsc");
-        textures = new Texture[folder.listFiles().length];
-        for(int i = 0; i < folder.listFiles().length; i++){
+        textures = new Texture[Objects.requireNonNull(folder.listFiles()).length];
+        for(int i = 0; i < Objects.requireNonNull(folder.listFiles()).length; i++){
             try {
-                textures[i] = new Texture(folder.listFiles()[i].getPath());
+                textures[i] = new Texture(Objects.requireNonNull(folder.listFiles())[i].getPath());
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

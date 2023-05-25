@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4c7c0bc6-3d9a-428a-a743-c759845d5fb2" name="Changes" comment="fixed rgb">
+    <list default="true" id="4c7c0bc6-3d9a-428a-a743-c759845d5fb2" name="Changes" comment="added automatic texture reading">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/RayCaster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RayCaster.java" afterDir="false" />
     </list>
@@ -210,7 +210,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684887625208</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="added automatic texture reading">
+      <created>1685010650737</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1685010650737</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -245,6 +252,7 @@
     <MESSAGE value="new texture, render optimization fix" />
     <MESSAGE value="removed old texture system" />
     <MESSAGE value="added support for multiple textures, z fighting remains" />
-    <option name="LAST_COMMIT_MESSAGE" value="added support for multiple textures, z fighting remains" />
+    <MESSAGE value="added automatic texture reading" />
+    <option name="LAST_COMMIT_MESSAGE" value="added automatic texture reading" />
   </component>
 </project>
