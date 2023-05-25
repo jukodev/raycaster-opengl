@@ -1,6 +1,10 @@
 import org.lwjgl.opengl.GL11;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.util.Arrays;
+import java.util.stream.Stream;
 
 public class RayCaster {
     private double horizontalX, horizontalY, verticalX, verticalY;
@@ -8,15 +12,18 @@ public class RayCaster {
 
     private int currentType = 0;
 
-    private final Texture textureBrick, textureBroken;
+    private Texture[] textures;
 
     public RayCaster(int[] map) {
         this.map = map;
-        try {
-            textureBrick = new Texture("rsc\\texture_bricks.png");
-            textureBroken = new Texture("rsc\\texture_broken.png");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        File folder = new File("rsc");
+        textures = new Texture[folder.listFiles().length];
+        for(int i = 0; i < folder.listFiles().length; i++){
+            try {
+                textures[i] = new Texture(folder.listFiles()[i].getPath());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
@@ -91,16 +98,13 @@ public class RayCaster {
 
         float textureYStep = 32f / (float) lineH;
 
-        var usedTexture = switch (currentType){
-            case 1 -> textureBrick;
-            case 2 -> textureBroken;
-            default -> null;
-        };
+        var usedTexture = textures[currentType - 1];
 
         for(int i = 0; i < lineH; i++){
-            float r =  (usedTexture.getColors()[((int) (textureY) * 32 + (int) (textureX)) % 1024].getRed()) * shading;
-            float g =  (usedTexture.getColors()[((int) (textureY) * 32 + (int) (textureX)) % 1024].getGreen()) * shading;
-            float b =  (usedTexture.getColors()[((int) (textureY) * 32 + (int) (textureX)) % 1024].getBlue()) * shading;
+            Color color = usedTexture.getColors()[((int) (textureY) * 32 + (int) (textureX)) % 1024];
+            float r =  color.getRed() * shading;
+            float g =  color.getGreen() * shading;
+            float b =  color.getBlue() * shading;
             GL11.glColor3f(r, g, b);
             GL11.glBegin(GL11.GL_POINTS);
             float y = (float) lineO + i;
