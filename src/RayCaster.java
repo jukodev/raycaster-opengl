@@ -7,9 +7,7 @@ import java.util.Objects;
 public class RayCaster {
     private double horizontalX, horizontalY, verticalX, verticalY;
     private final int[] map;
-
     private int currentType = 0;
-
     private final Texture[] textures;
 
     public RayCaster(int[] map) {
@@ -63,7 +61,7 @@ public class RayCaster {
             if(rayAngle < 0) rayAngle += 2 * Math.PI;
             if(rayAngle > 2 * Math.PI) rayAngle -= 2 * Math.PI;
         }
-        System.out.println(pixelCount);
+        Window.getStatistics().setPixelCount(pixelCount);
         pixelCount = 0;
     }
 

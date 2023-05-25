@@ -10,6 +10,8 @@ public class Window {
     public static final int MAP_X_LENGTH = 8, MAP_Y_LENGTH = 8, MAP_CHUNK_SIZE = 64;
     private long windowIndex;
     private Player player;
+    @Getter
+    private static Statistics statistics;
 
     @Getter
     private final int[] map = {
@@ -47,6 +49,7 @@ public class Window {
         glClearColor(0.1f, 0.1f, 0.1f, 1.0f); //background color
 
         player = new Player(windowIndex, map);
+        statistics = new Statistics();
     }
 
     private void loop() {
@@ -57,6 +60,7 @@ public class Window {
 
             GLFW.glfwSwapBuffers(windowIndex);
             GLFW.glfwPollEvents();
+            statistics.update();
         }
     }
 

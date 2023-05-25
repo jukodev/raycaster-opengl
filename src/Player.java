@@ -80,8 +80,7 @@ public class Player {
         val prevX = xPos;
         val prevY = yPos;
         float deltaTime = (System.currentTimeMillis() - lastFrameTime) / 100f;
-        //if(System.currentTimeMillis() - lastFrameTime > 0)
-            //System.out.println(1000 / (System.currentTimeMillis() - lastFrameTime));
+        Window.getStatistics().setDeltaTime(System.currentTimeMillis() - lastFrameTime);
         lastFrameTime = System.currentTimeMillis();
 
         if(moveVert != 0){
