@@ -97,17 +97,24 @@ public class RayCaster {
         var usedTexture = textures[currentType - 1];
 
         for(int i = 0; i < lineH; i++){
+            float y = (float) lineO + i;
+            if(y < 0){
+                textureY += textureYStep;
+                continue;
+            }else if(y > 512)return;
             Color color = usedTexture.getColors()[((int) (textureY) * 32 + (int) (textureX)) % 1024];
             float r =  color.getRed() * shading;
             float g =  color.getGreen() * shading;
             float b =  color.getBlue() * shading;
+
             GL11.glColor3f(r, g, b);
             GL11.glBegin(GL11.GL_POINTS);
-            float y = (float) lineO + i;
+
 
             GL11.glVertex2f(Window.getNormalX(index * (8 / RES_SCALE) + 530), Window.getNormalY(y));
             GL11.glEnd();
             textureY += textureYStep;
+
             pixelCount ++;
         }
 
