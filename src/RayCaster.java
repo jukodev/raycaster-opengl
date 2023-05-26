@@ -7,7 +7,7 @@ import java.util.Objects;
 public class RayCaster {
     private double horizontalX, horizontalY, verticalX, verticalY;
     private final int[] map;
-    private int currentType = 0;
+    private int currentTypeVert = 0, currenTypeHor = 0;
     private final Texture[] textures;
 
     public RayCaster(int[] map) {
@@ -37,16 +37,19 @@ public class RayCaster {
             double disV = castVerticalRay(playerX, playerY, rayAngle);
             double disH = castHorizontalRay(playerX, playerY, rayAngle);
             float shading = 1f;
+            int currentType;
             if(disV < disH){
                 rayPosX = verticalX;
                 rayPosY = verticalY;
                 distance = disV;
                 shading = .5f;
+                currentType = currentTypeVert;
 
             }else{
                 rayPosX = horizontalX;
                 rayPosY = horizontalY;
                 distance = disH;
+                currentType = currenTypeHor;
             }
             GL11.glColor3f(0,1,1);
             GL11.glLineWidth(1);
@@ -55,7 +58,7 @@ public class RayCaster {
             GL11.glVertex2f(Window.getNormalX((float) rayPosX), Window.getNormalY((float) rayPosY));
             GL11.glEnd();
 
-            drawVerticalLine(i, distance, playerAngle, rayAngle, shading,  rayPosX, rayPosY);
+            drawVerticalLine(i, distance, playerAngle, rayAngle, shading,  rayPosX, rayPosY, currentType);
 
             rayAngle += DR;
             if(rayAngle < 0) rayAngle += 2 * Math.PI;
@@ -66,7 +69,7 @@ public class RayCaster {
     }
 
     int pixelCount = 0;
-    private void drawVerticalLine(int index, double distance, float playerAngle, double rayAngle, float shading, double rayPosX, double rayPosY) {
+    private void drawVerticalLine(int index, double distance, float playerAngle, double rayAngle, float shading, double rayPosX, double rayPosY, int currentType) {
         double normalizedAngle = playerAngle - rayAngle;
         if (normalizedAngle < 0) {
             normalizedAngle += 2 * Math.PI;
@@ -155,7 +158,7 @@ public class RayCaster {
             mapIndex = mapY * 8 + mapX;
             if (mapIndex > 0 && mapIndex < 64 && map[mapIndex] > 0) {
                 horizontalX = rayPosX;
-                currentType = map[mapIndex];
+                currenTypeHor = map[mapIndex];
                 horizontalY = rayPosY;
                 horizontalDistance = distance(playerX, playerY, horizontalX, horizontalY);
                 rayDepth = 8;
@@ -205,7 +208,7 @@ public class RayCaster {
             if (mapIndex > 0 && mapIndex < 64 && map[mapIndex] > 0) {
                 verticalX = rayPosX;
                 verticalY = rayPosY;
-                currentType = map[mapIndex];
+                currentTypeVert = map[mapIndex];
                 verticalDistance = distance(playerX, playerY, verticalX, verticalY);
                 rayDepth = 8;
             } else {

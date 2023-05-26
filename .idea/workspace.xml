@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4c7c0bc6-3d9a-428a-a743-c759845d5fb2" name="Changes" comment="added separate Statistics window">
+    <list default="true" id="4c7c0bc6-3d9a-428a-a743-c759845d5fb2" name="Changes" comment="fixed z fighting">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/RayCaster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RayCaster.java" afterDir="false" />
     </list>
@@ -262,6 +262,7 @@
     <MESSAGE value="added automatic texture reading" />
     <MESSAGE value="lil fix" />
     <MESSAGE value="added separate Statistics window" />
-    <option name="LAST_COMMIT_MESSAGE" value="added separate Statistics window" />
+    <MESSAGE value="fixed z fighting" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed z fighting" />
   </component>
 </project>
