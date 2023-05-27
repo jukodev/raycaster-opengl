@@ -1,5 +1,4 @@
 import lombok.Setter;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.stream.IntStream;
@@ -7,10 +6,8 @@ import java.util.stream.IntStream;
 public class Statistics extends JFrame {
     private final Label fpsLabel;
     private final Label renderedPixels;
-
     private final int[] fps = new int[10];
     private int fpsIndex;
-
     @Setter
     private long deltaTime;
     @Setter
@@ -32,6 +29,7 @@ public class Statistics extends JFrame {
         add(renderedPixels);
     }
 
+    // Updates the displayed Statistics every frame
     public void update(){
         if(deltaTime != 0){
             fps[fpsIndex] = (int) (1000 / deltaTime);

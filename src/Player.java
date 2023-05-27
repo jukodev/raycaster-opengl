@@ -1,17 +1,12 @@
-import lombok.Getter;
 import lombok.val;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL11;
 
 public class Player {
-    @Getter
     private float xPos = 120, yPos = 120;
-    @Getter
     private float deltaX, deltaY, angle;
-
     private double prevMouseX;
     private final int[] map;
-
     private int moveVert = 0, moveHor = 0;
 
     private long lastFrameTime;
@@ -27,10 +22,10 @@ public class Player {
         rayCaster = new RayCaster(map);
     }
 
-    // register movement key callbacks
+    // Register movement key callbacks
     private void registerKeyCallBacks(long windowIndex){
         GLFW.glfwSetKeyCallback(windowIndex, (window, key, scancode, action, mods) -> {
-            if(action == GLFW.GLFW_PRESS){
+            if(action == GLFW.GLFW_PRESS){ // Changes amount of rays / render resolution
                 switch (key){
                     case GLFW.GLFW_KEY_UP -> RayCaster.RES_SCALE = RayCaster.RES_SCALE < 8 ? RayCaster.RES_SCALE * 2 : 8;
                     case GLFW.GLFW_KEY_DOWN -> RayCaster.RES_SCALE = RayCaster.RES_SCALE > 1 ? RayCaster.RES_SCALE / 2 : 1;
@@ -39,10 +34,9 @@ public class Player {
 
             if(action != GLFW.GLFW_RELEASE && action != GLFW.GLFW_PRESS) return;
             val pressed = action == GLFW.GLFW_PRESS ? 1 : 0;
-
             switch (key) {
                 case GLFW.GLFW_KEY_W -> moveHor = pressed;
-                case GLFW.GLFW_KEY_A -> moveVert = pressed; // orthogonal vector
+                case GLFW.GLFW_KEY_A -> moveVert = pressed;
                 case GLFW.GLFW_KEY_D -> moveVert = -pressed;
                 case GLFW.GLFW_KEY_S -> moveHor = -pressed;
                 case GLFW.GLFW_KEY_ESCAPE -> GLFW.glfwSetWindowShouldClose(windowIndex, true);
@@ -76,6 +70,7 @@ public class Player {
         });
     }
 
+    // Move player based on input and deltaTime
     private void movePlayer(){
         val prevX = xPos;
         val prevY = yPos;
@@ -98,9 +93,10 @@ public class Player {
         }
     }
 
+    // Draws player at new position, draws ray cast render
     public void draw(){
         movePlayer();
-        rayCaster.draw(xPos, yPos, angle); // draw the "3D render"
+        rayCaster.draw(xPos, yPos, angle); // Draw the "3D render" TODO: move this to @Window?
 
         val ndcX = Window.getNormalX(xPos);
         val ndcY = Window.getNormalY(yPos);
@@ -117,7 +113,7 @@ public class Player {
         GL11.glEnd();
     }
 
-    // check for possible collisions with walls
+    // Check for possible collisions with walls
     private boolean checkMove(float x, float y){
         val _x = (int)(x / 64);
         val _y = (int)(y / 64);

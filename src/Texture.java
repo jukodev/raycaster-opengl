@@ -1,9 +1,9 @@
 import lombok.Getter;
-
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 public class Texture {
     @Getter
@@ -28,5 +28,19 @@ public class Texture {
                 index++;
             }
         }
+    }
+
+    // Load in all textures from folder TODO: handle invalid file formats
+    public static Texture[] loadTextures(){
+        File folder = new File("rsc");
+        var textures = new Texture[Objects.requireNonNull(folder.listFiles()).length];
+        for(int i = 0; i < Objects.requireNonNull(folder.listFiles()).length; i++){
+            try {
+                textures[i] = new Texture(Objects.requireNonNull(folder.listFiles())[i].getPath());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return textures;
     }
 }

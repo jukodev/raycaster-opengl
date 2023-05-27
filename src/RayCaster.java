@@ -1,38 +1,27 @@
 import org.lwjgl.opengl.GL11;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Objects;
-
 public class RayCaster {
+    public static int RES_SCALE = 8;
     private double horizontalX, horizontalY, verticalX, verticalY;
     private final int[] map;
     private int currentTypeVert = 0, currenTypeHor = 0;
     private final Texture[] textures;
+    int pixelCount = 0;
 
     public RayCaster(int[] map) {
         this.map = map;
-        File folder = new File("rsc");
-        textures = new Texture[Objects.requireNonNull(folder.listFiles()).length];
-        for(int i = 0; i < Objects.requireNonNull(folder.listFiles()).length; i++){
-            try {
-                textures[i] = new Texture(Objects.requireNonNull(folder.listFiles())[i].getPath());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
+        textures = Texture.loadTextures();
     }
 
-    public static int RES_SCALE = 8;
-
+    // Casts horizontal and vertical rays, draws vertical line for nearest hit point, draws 2D ray for testing TODO: remove 2D ray once base ray-casting errors are fixed
     public void draw(float playerX, float playerY, float playerAngle){
         double rayPosX, rayPosY, rayAngle, distance;
-
         double DR = 0.0174533 / RES_SCALE;
         rayAngle = playerAngle - DR * 30 * RES_SCALE;
         if(rayAngle < 0) rayAngle += 2 * Math.PI;
         if(rayAngle > 2 * Math.PI) rayAngle -= 2 * Math.PI;
 
+        // Loops through all angles the rays have to go
         for(int i = 0; i < 60 * RES_SCALE; i++){
             double disV = castVerticalRay(playerX, playerY, rayAngle);
             double disH = castHorizontalRay(playerX, playerY, rayAngle);
@@ -68,7 +57,7 @@ public class RayCaster {
         pixelCount = 0;
     }
 
-    int pixelCount = 0;
+    // Draws vertical line scaled by distance to player, scales texture accordingly
     private void drawVerticalLine(int index, double distance, float playerAngle, double rayAngle, float shading, double rayPosX, double rayPosY, int currentType) {
         double normalizedAngle = playerAngle - rayAngle;
         if (normalizedAngle < 0) {
@@ -80,9 +69,7 @@ public class RayCaster {
         distance *= Math.cos(normalizedAngle);
         double lineH = (64 * 320) / distance;
         if(lineH > 2000) lineH = 2000;
-
         double lineO = 160 - lineH / 2;
-
 
         float textureY = 0;
         float textureX;
@@ -94,9 +81,7 @@ public class RayCaster {
             textureX = (int) (rayPosY / 2.0) % 32;
             if(rayAngle > 90 && rayAngle < 270) textureX = 31-textureX;
         }
-
         float textureYStep = 32f / (float) lineH;
-
         var usedTexture = textures[currentType - 1];
 
         for(int i = 0; i < lineH; i++){
@@ -109,21 +94,16 @@ public class RayCaster {
             float r =  color.getRed() * shading;
             float g =  color.getGreen() * shading;
             float b =  color.getBlue() * shading;
-
             GL11.glColor3f(r, g, b);
             GL11.glBegin(GL11.GL_POINTS);
-
-
             GL11.glVertex2f(Window.getNormalX(index * (8 / RES_SCALE) + 530), Window.getNormalY(y));
             GL11.glEnd();
             textureY += textureYStep;
-
             pixelCount ++;
         }
-
-
     }
 
+    // Casts ray looking for collision with horizontal walls
     private double castHorizontalRay(float playerX, float playerY, double rayAngle) {
         int mapX, mapY, mapIndex;
         double rayPosX, rayPosY, offsetX = 0, offsetY = 0;
@@ -171,6 +151,7 @@ public class RayCaster {
         return horizontalDistance;
     }
 
+    // Casts ray looking for collision with vertical walls
     private double castVerticalRay(float playerX, float playerY, double rayAngle) {
         int mapX, mapY, mapIndex;
         double rayPosX, rayPosY, offsetX = 0, offsetY = 0;
@@ -219,7 +200,6 @@ public class RayCaster {
         }
         return verticalDistance;
     }
-
 
     private double distance(double ax, double ay, double bx, double by){
         return (Math.sqrt((bx - ax) * (bx - ax) + (by - ay)* (by - ay)));

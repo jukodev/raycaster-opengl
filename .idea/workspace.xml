@@ -4,9 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4c7c0bc6-3d9a-428a-a743-c759845d5fb2" name="Changes" comment="fixed z fighting">
+    <list default="true" id="4c7c0bc6-3d9a-428a-a743-c759845d5fb2" name="Changes" comment="improved code quality, added comments">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Color.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Color.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/RayCaster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RayCaster.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Statistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Statistics.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Texture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Texture.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Window.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -224,7 +229,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685010719459</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="fixed z fighting">
+      <created>1685144724505</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1685144724505</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -263,6 +275,7 @@
     <MESSAGE value="lil fix" />
     <MESSAGE value="added separate Statistics window" />
     <MESSAGE value="fixed z fighting" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed z fighting" />
+    <MESSAGE value="improved code quality, added comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="improved code quality, added comments" />
   </component>
 </project>

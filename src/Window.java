@@ -13,7 +13,7 @@ public class Window {
     @Getter
     private static Statistics statistics;
 
-    @Getter
+    @Getter // TODO: Class for Maps, read them from files
     private final int[] map = {
             1,1,1,1,1,1,1,1,
             1,0,0,0,0,0,0,1,
@@ -52,6 +52,7 @@ public class Window {
         statistics = new Statistics();
     }
 
+    // Main game loop, calls render methods of map, player and "3D render", updates display of Statistics
     private void loop() {
         while (!GLFW.glfwWindowShouldClose(windowIndex)) {
             GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
@@ -64,6 +65,7 @@ public class Window {
         }
     }
 
+    // Draws 2D map, TODO: remove base ray-casting errors are fixed
     private void drawMap(){
         int xo, yo;
         for(int y = 0; y < MAP_Y_LENGTH; y++){
