@@ -6,11 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4c7c0bc6-3d9a-428a-a743-c759845d5fb2" name="Changes" comment="improved code quality, added comments">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Color.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Color.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RayCaster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RayCaster.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Statistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Statistics.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Texture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Texture.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Window.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -40,6 +36,9 @@
       </MavenImportingSettings>
     </option>
   </component>
+  <component name="MavenRunner">
+    <option name="delegateBuildToMaven" value="true" />
+  </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -61,7 +60,10 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.new.ui&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.runner&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -70,7 +72,7 @@
       <recent name="C:\Users\Julian\IdeaProjects\raycaster-opengl\rsc" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Window">
     <configuration name="Window" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Window" />
       <module name="raycaster-opengl" />
@@ -78,8 +80,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="raycaster-opengl-1.0-SNAPSHOT.jar" type="JarApplication" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/target/raycaster-opengl-1.0-SNAPSHOT.jar" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JAR Application.raycaster-opengl-1.0-SNAPSHOT.jar" />
         <item itemvalue="Application.Window" />
       </list>
     </recent_temporary>
@@ -102,6 +109,7 @@
       <workItem from="1684497477183" duration="625000" />
       <workItem from="1684532700404" duration="5171000" />
       <workItem from="1684936711077" duration="848000" />
+      <workItem from="1685313716316" duration="448000" />
     </task>
     <task id="LOCAL-00001" summary="added Player">
       <created>1684277669296</created>
@@ -236,7 +244,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685144724505</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="improved code quality, added comments">
+      <created>1685146439623</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1685146439623</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

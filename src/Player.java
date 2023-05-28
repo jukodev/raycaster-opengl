@@ -1,9 +1,12 @@
+import lombok.Getter;
 import lombok.val;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL11;
 
 public class Player {
+    @Getter
     private float xPos = 120, yPos = 120;
+    @Getter
     private float deltaX, deltaY, angle;
     private double prevMouseX;
     private final int[] map;
@@ -11,15 +14,12 @@ public class Player {
 
     private long lastFrameTime;
 
-    private final RayCaster rayCaster;
-
     public Player(long windowIndex, int[] map){
         registerKeyCallBacks(windowIndex);
         registerMouseCallbacks(windowIndex);
         this.map = map;
         deltaX = (float) (Math.cos(angle) * 5);
         deltaY = (float) (Math.sin(angle) * 5);
-        rayCaster = new RayCaster(map);
     }
 
     // Register movement key callbacks
@@ -96,7 +96,6 @@ public class Player {
     // Draws player at new position, draws ray cast render
     public void draw(){
         movePlayer();
-        rayCaster.draw(xPos, yPos, angle); // Draw the "3D render" TODO: move this to @Window?
 
         val ndcX = Window.getNormalX(xPos);
         val ndcY = Window.getNormalY(yPos);

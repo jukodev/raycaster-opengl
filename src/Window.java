@@ -10,6 +10,8 @@ public class Window {
     public static final int MAP_X_LENGTH = 8, MAP_Y_LENGTH = 8, MAP_CHUNK_SIZE = 64;
     private long windowIndex;
     private Player player;
+
+    private RayCaster rayCaster;
     @Getter
     private static Statistics statistics;
 
@@ -49,6 +51,7 @@ public class Window {
         glClearColor(0.1f, 0.1f, 0.1f, 1.0f); //background color
 
         player = new Player(windowIndex, map);
+        rayCaster = new RayCaster(map);
         statistics = new Statistics();
     }
 
@@ -57,6 +60,7 @@ public class Window {
         while (!GLFW.glfwWindowShouldClose(windowIndex)) {
             GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
             drawMap();
+            rayCaster.draw(player.getXPos(), player.getYPos(), player.getAngle());
             player.draw();
 
             GLFW.glfwSwapBuffers(windowIndex);
