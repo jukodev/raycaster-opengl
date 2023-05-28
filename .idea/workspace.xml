@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4c7c0bc6-3d9a-428a-a743-c759845d5fb2" name="Changes" comment="improved code quality, added comments">
+    <list default="true" id="4c7c0bc6-3d9a-428a-a743-c759845d5fb2" name="Changes" comment="improved texture loading, tried to fix raycasting error when turning">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Window.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/RayCaster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RayCaster.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Texture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Texture.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +109,7 @@
       <workItem from="1684497477183" duration="625000" />
       <workItem from="1684532700404" duration="5171000" />
       <workItem from="1684936711077" duration="848000" />
-      <workItem from="1685313716316" duration="448000" />
+      <workItem from="1685313716316" duration="2000000" />
     </task>
     <task id="LOCAL-00001" summary="added Player">
       <created>1684277669296</created>
@@ -251,7 +251,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685146439623</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="repositioned ray-cast drawing">
+      <created>1685314245614</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1685314245614</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -291,6 +298,8 @@
     <MESSAGE value="added separate Statistics window" />
     <MESSAGE value="fixed z fighting" />
     <MESSAGE value="improved code quality, added comments" />
-    <option name="LAST_COMMIT_MESSAGE" value="improved code quality, added comments" />
+    <MESSAGE value="repositioned ray-cast drawing" />
+    <MESSAGE value="improved texture loading, tried to fix raycasting error when turning" />
+    <option name="LAST_COMMIT_MESSAGE" value="improved texture loading, tried to fix raycasting error when turning" />
   </component>
 </project>

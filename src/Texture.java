@@ -1,21 +1,22 @@
 import lombok.Getter;
+import lombok.val;
+
 import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.Objects;
+import java.util.Arrays;
 
 public class Texture {
     @Getter
     private final Color[] colors;
 
     public Texture(String path) throws IOException {
-        File file = new File(path);
+        val file = new File(path);
         if (!file.exists()) {
             throw new IOException("File not found: " + path);
         }
 
-        BufferedImage image = ImageIO.read(file);
+        val image = ImageIO.read(file);
         colors = new Color[1024];
         int index = 0;
         for(int y = 0; y < image.getHeight(); y++){
@@ -30,13 +31,17 @@ public class Texture {
         }
     }
 
-    // Load in all textures from folder TODO: handle invalid file formats
+    // Load in all textures from folder
     public static Texture[] loadTextures(){
-        File folder = new File("rsc");
-        var textures = new Texture[Objects.requireNonNull(folder.listFiles()).length];
-        for(int i = 0; i < Objects.requireNonNull(folder.listFiles()).length; i++){
+        val folder = new File("rsc");
+        if(folder.listFiles() == null){
+            throw new RuntimeException("No textures found at '/rsc'");
+        }
+        val files = (File[]) Arrays.stream(folder.listFiles()).filter(file -> file.getName().endsWith(".png")).toArray();
+        val textures = new Texture[files.length];
+        for(int i = 0; i < files.length; i++){
             try {
-                textures[i] = new Texture(Objects.requireNonNull(folder.listFiles())[i].getPath());
+                textures[i] = new Texture(files[i].getPath());
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

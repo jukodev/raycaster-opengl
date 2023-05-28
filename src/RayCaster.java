@@ -18,8 +18,12 @@ public class RayCaster {
         double rayPosX, rayPosY, rayAngle, distance;
         double DR = 0.0174533 / RES_SCALE;
         rayAngle = playerAngle - DR * 30 * RES_SCALE;
-        if(rayAngle < 0) rayAngle += 2 * Math.PI;
-        if(rayAngle > 2 * Math.PI) rayAngle -= 2 * Math.PI;
+        while (rayAngle < 0) {
+            rayAngle += 2 * Math.PI;
+        }
+        while (rayAngle >= 2 * Math.PI) {
+            rayAngle -= 2 * Math.PI;
+        }
 
         // Loops through all angles the rays have to go
         for(int i = 0; i < 60 * RES_SCALE; i++){
@@ -106,7 +110,7 @@ public class RayCaster {
     // Casts ray looking for collision with horizontal walls
     private double castHorizontalRay(float playerX, float playerY, double rayAngle) {
         int mapX, mapY, mapIndex;
-        double rayPosX, rayPosY, offsetX = 0, offsetY = 0;
+        double rayPosX, rayPosY, offsetX, offsetY;
         int rayDepth = 0;
         double horizontalDistance = 100000;
         double aTan = (-1 / Math.tan(rayAngle));
@@ -127,9 +131,10 @@ public class RayCaster {
         }
         // Looking left or right
         else {
-            rayPosX = playerX;
-            rayPosY = playerY;
-            rayDepth = 8;
+            rayPosX = (((int) playerX >> 6) << 6) + (rayAngle < Math.PI ? 64 : -0.0001);
+            rayPosY = playerY + (rayPosX - playerX) * aTan;
+            offsetX = rayAngle < Math.PI ? 64 : -64;
+            offsetY = -offsetX * aTan;
         }
 
         while (rayDepth < 8) {
@@ -154,7 +159,7 @@ public class RayCaster {
     // Casts ray looking for collision with vertical walls
     private double castVerticalRay(float playerX, float playerY, double rayAngle) {
         int mapX, mapY, mapIndex;
-        double rayPosX, rayPosY, offsetX = 0, offsetY = 0;
+        double rayPosX, rayPosY, offsetX, offsetY;
         int rayDepth = 0;
         double verticalDistance = 100000;
         double nTan = -Math.tan(rayAngle);
@@ -177,9 +182,10 @@ public class RayCaster {
         }
         // Looking up or down
         else {
-            rayPosX = playerX;
-            rayPosY = playerY;
-            rayDepth = 8;
+            rayPosX = playerX + (playerY - Math.floor(playerY / 64) * 64) * nTan;
+            rayPosY = Math.floor(playerY / 64) * 64 + (rayAngle < Math.PI ? 64 : -0.0001);
+            offsetY = rayAngle < Math.PI ? 64 : -64;
+            offsetX = -offsetY * nTan;
         }
 
         while (rayDepth < 8) {
