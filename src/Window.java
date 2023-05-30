@@ -69,7 +69,7 @@ public class Window {
         }
     }
 
-    // Draws 2D map, TODO: remove base ray-casting errors are fixed
+    // Draws 2D map, TODO: remove once base ray-casting errors are fixed
     private void drawMap(){
         int xo, yo;
         for(int y = 0; y < MAP_Y_LENGTH; y++){

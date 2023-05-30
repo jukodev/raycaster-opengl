@@ -95,9 +95,10 @@ public class RayCaster {
                 continue;
             }else if(y > 512)return;
             Color color = usedTexture.getColors()[((int) (textureY) * 32 + (int) (textureX)) % 1024];
-            float r =  color.getRed() * shading;
-            float g =  color.getGreen() * shading;
-            float b =  color.getBlue() * shading;
+            float calcShading = (float) (shading *  Math.max(Math.min(80 / distance, 1), .1f));
+            float r = color.getRed() * calcShading;
+            float g = color.getGreen() * calcShading;
+            float b = color.getBlue() * calcShading;
             GL11.glColor3f(r, g, b);
             GL11.glBegin(GL11.GL_POINTS);
             GL11.glVertex2f(Window.getNormalX(index * (8 / RES_SCALE) + 530), Window.getNormalY(y));

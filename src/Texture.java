@@ -37,7 +37,15 @@ public class Texture {
         if(folder.listFiles() == null){
             throw new RuntimeException("No textures found at '/rsc'");
         }
-        val files = (File[]) Arrays.stream(folder.listFiles()).filter(file -> file.getName().endsWith(".png")).toArray();
+        Object[] objectArray = Arrays.stream(folder.listFiles())
+                .filter(file -> file.getName().endsWith(".png"))
+                .toArray();
+
+        File[] files = new File[objectArray.length];
+        for (int i = 0; i < objectArray.length; i++) {
+            files[i] = (File) objectArray[i];
+        }
+
         val textures = new Texture[files.length];
         for(int i = 0; i < files.length; i++){
             try {

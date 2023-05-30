@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4c7c0bc6-3d9a-428a-a743-c759845d5fb2" name="Changes" comment="improved texture loading, tried to fix raycasting error when turning">
+    <list default="true" id="4c7c0bc6-3d9a-428a-a743-c759845d5fb2" name="Changes" comment="fixed raycast misdirection, added shading by distance">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/RayCaster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RayCaster.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Texture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Texture.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Window.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,9 +36,6 @@
         <option name="workspaceImportEnabled" value="true" />
       </MavenImportingSettings>
     </option>
-  </component>
-  <component name="MavenRunner">
-    <option name="delegateBuildToMaven" value="true" />
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -86,8 +84,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JAR Application.raycaster-opengl-1.0-SNAPSHOT.jar" />
         <item itemvalue="Application.Window" />
+        <item itemvalue="JAR Application.raycaster-opengl-1.0-SNAPSHOT.jar" />
       </list>
     </recent_temporary>
   </component>
@@ -109,7 +107,11 @@
       <workItem from="1684497477183" duration="625000" />
       <workItem from="1684532700404" duration="5171000" />
       <workItem from="1684936711077" duration="848000" />
-      <workItem from="1685313716316" duration="2000000" />
+      <workItem from="1685313716316" duration="2094000" />
+      <workItem from="1685390394549" duration="15000" />
+      <workItem from="1685397556264" duration="168000" />
+      <workItem from="1685484641081" duration="1766000" />
+      <workItem from="1685487512303" duration="1291000" />
     </task>
     <task id="LOCAL-00001" summary="added Player">
       <created>1684277669296</created>
@@ -258,7 +260,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685314245614</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="improved texture loading, tried to fix raycasting error when turning">
+      <created>1685315723279</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1685315723279</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -300,6 +309,7 @@
     <MESSAGE value="improved code quality, added comments" />
     <MESSAGE value="repositioned ray-cast drawing" />
     <MESSAGE value="improved texture loading, tried to fix raycasting error when turning" />
-    <option name="LAST_COMMIT_MESSAGE" value="improved texture loading, tried to fix raycasting error when turning" />
+    <MESSAGE value="fixed raycast misdirection, added shading by distance" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed raycast misdirection, added shading by distance" />
   </component>
 </project>
