@@ -67,6 +67,7 @@ public class Window {
             GLFW.glfwPollEvents();
             statistics.update();
         }
+        statistics.dispose();
     }
 
     // Draws 2D map, TODO: remove once base ray-casting errors are fixed

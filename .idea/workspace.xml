@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4c7c0bc6-3d9a-428a-a743-c759845d5fb2" name="Changes" comment="fixed raycast misdirection, added shading by distance">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Texture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Texture.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Window.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,6 +110,7 @@
       <workItem from="1685397556264" duration="168000" />
       <workItem from="1685484641081" duration="1766000" />
       <workItem from="1685487512303" duration="1366000" />
+      <workItem from="1685567221576" duration="248000" />
     </task>
     <task id="LOCAL-00001" summary="added Player">
       <created>1684277669296</created>
