@@ -13,7 +13,6 @@
         <maven.compiler.target>20</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <lwjgl.version>3.3.2</lwjgl.version>
-        <lwjgl.natives>natives-windows</lwjgl.natives>
     </properties>
 
     <dependencyManagement>
@@ -91,6 +90,32 @@
             <classifier>${lwjgl.natives}</classifier>
         </dependency>
     </dependencies>
+
+         <profiles>
+  <profile>
+    <id>Windows</id>
+    <activation>
+      <os>
+        <family>Windows</family>
+      </os>
+    </activation>
+    <properties>
+      <lwjgl.natives>natives-windows</lwjgl.natives>
+    </properties>
+  </profile>
+  <profile>
+    <id>macOS</id>
+    <activation>
+      <os>
+        <family>Mac</family>
+      </os>
+    </activation>
+    <properties>
+      <lwjgl.natives>natives-macos</lwjgl.natives>
+    </properties>
+  </profile>
+</profiles>
+
     <build>
         <plugins>
             <plugin>
